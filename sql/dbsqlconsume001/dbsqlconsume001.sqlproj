@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>dbsqlconsume001</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{FB8AFD69-4D45-423A-82EE-96BE6FB59C05}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>dbsqlconsume001</RootNamespace>
+    <AssemblyName>dbsqlconsume001</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(NetCoreBuild)' == 'true'" Project="$(NETCoreTargetsPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(NetCoreBuild)' != 'true' AND '$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(NetCoreBuild)' != 'true' AND '$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <PackageReference Condition="'$(NetCoreBuild)' == 'true'" Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Security" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Views" />
+    <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\StoredProcedures" />
+  </ItemGroup>
+  <Target Name="BeforeBuild">
+    <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
+  </Target>
+  <ItemGroup>
+    <Build Include="Security\wandent.sql" />
+    <Build Include="Security\testuser_1.sql" />
+    <Build Include="Security\testuser.sql" />
+    <Build Include="Security\SqlRoleMembership.sql" />
+    <Build Include="Security\deveuspurview001.sql" />
+    <Build Include="Security\adf-bigdata-full.sql" />
+    <Build Include="dbo\Views\vw_LastRun_Log.sql" />
+    <Build Include="dbo\Views\vw_ErrLst30Days.sql" />
+    <Build Include="dbo\Views\vw_ErrLst24Hrs.sql" />
+    <Build Include="dbo\Views\vw_AvgTimeLst30Days.sql" />
+    <Build Include="dbo\Views\vw_AvgSamplingLst30Days.sql" />
+    <Build Include="dbo\Views\vw_AvgMostUsedLst30Days.sql" />
+    <Build Include="dbo\Views\vw_AvgLargestLst30Days.sql" />
+    <Build Include="dbo\Views\vw_AvgFragLst30Days.sql" />
+    <Build Include="dbo\Views\testIndexedRides.sql" />
+    <Build Include="dbo\Views\testGroupMedallionCode.sql" />
+    <Build Include="dbo\Views\testGroupMedallion.sql" />
+    <Build Include="dbo\Views\testGroupGeographyID.sql" />
+    <Build Include="dbo\Views\testGroupDateID.sql" />
+    <Build Include="dbo\Tables\testmasking.sql" />
+    <Build Include="dbo\Tables\tbl_AdaptiveIndexDefrag_Working.sql" />
+    <Build Include="dbo\Tables\tbl_AdaptiveIndexDefrag_Stats_Working.sql" />
+    <Build Include="dbo\Tables\tbl_AdaptiveIndexDefrag_Stats_log.sql" />
+    <Build Include="dbo\Tables\tbl_AdaptiveIndexDefrag_log.sql" />
+    <Build Include="dbo\Tables\tbl_AdaptiveIndexDefrag_IxDisableStatus.sql" />
+    <Build Include="dbo\Tables\tbl_AdaptiveIndexDefrag_Exceptions.sql" />
+    <Build Include="dbo\Tables\tbl_AdaptiveIndexDefrag_Analysis_log.sql" />
+    <Build Include="dbo\Tables\RidesFull.sql" />
+    <Build Include="dbo\StoredProcedures\usp_AdaptiveIndexDefrag_PurgeLogs.sql" />
+    <Build Include="dbo\StoredProcedures\usp_AdaptiveIndexDefrag_Exceptions.sql" />
+    <Build Include="dbo\StoredProcedures\usp_AdaptiveIndexDefrag_CurrentExecStats.sql" />
+    <Build Include="dbo\StoredProcedures\usp_AdaptiveIndexDefrag.sql" />
+  </ItemGroup>
+</Project>
